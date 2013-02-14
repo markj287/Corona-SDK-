@@ -44,7 +44,7 @@ function scene:enterScene(event)
 	local allSFX = { popSound, winSound, loseSound } -- Table with all sound affects 
 
 	-- Play music 
-	--audio.play(soundtrack)
+	audio.play(soundtrack)
 
 	local background = display.newImageRect("images/background4.png", 640, 1200)
 	group:insert(background)

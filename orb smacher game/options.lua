@@ -80,7 +80,8 @@ function scene:enterScene( event )
 	}
 	group:insert(MusicOffBtn)
 	MusicOffBtn.x = display.contentWidth/2
-	MusicOffBtn.y =   display.contentHeight/2
+	MusicOffBtn.y = display.contentHeight/2
+	MusicOffBtn:setLabel("Music On")
 
 end
 
