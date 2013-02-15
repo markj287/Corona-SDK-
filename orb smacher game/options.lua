@@ -63,7 +63,9 @@ function scene:enterScene( event )
 	-- viewableContentHeight 
 
 	local function turnOffMusic (event)
-		 audio.stop()
+		if event.phase == "release" then
+		 	audio.stop()
+		end
 	end
 
 	local MusicOffBtn= widget.newButton{
@@ -81,16 +83,18 @@ function scene:enterScene( event )
 	group:insert(MusicOffBtn)
 	MusicOffBtn.x = display.contentWidth/2
 	MusicOffBtn.y = display.contentHeight/2
-	MusicOffBtn:setLabel("Music On")
+	
 
 end
 
--- Called whenscene is about tp move offscreen:
+-- Called when scene is about to move offscreen:
 function scene:exitScene( event )
 	local group = self.view
 
 	-- INSERT code here(e.g stop timers, remove listeners, unload sounds, etc.)
-	display.remove(worldText)
+	display.remove(MusicOffBtn)
+	display.remove(backBtn)
+
 
 
 end
@@ -100,7 +104,7 @@ function scene:destroyScene( event )
 	local group = self.view
 
 	-- INSERT code here(e.g remove timers, remove widgets, saved state, etc.)
-		display.remove(worldText)
+	
 end
 
 
