@@ -12,6 +12,9 @@ scene = storyboard.newScene()
 local widget = require "widget"
 
 -- Local forward references should go here --
+local background = display.newImageRect("images/background3.png", 640, 1200)
+
+
 
 
 -- Called when the scene's view does not exist:
@@ -31,15 +34,6 @@ function scene:enterScene( event )
 	local group = self.view
 
 	-- INSERT code here(e.g. start timers, load audio, start listeners, etc.)
-
-	local background = display.newImage("images/w1-bg.png")
-	group:insert(background)
-
-	local worldText = display.newText(" Welcome to world 1" , 0, 0 , "Helvetica", 22)
-	worldText.x = display.contentWidth/2
-	worldText.y = display.contentHeight/2
-
-		display.remove(worldText)
 
 	local function buttonHit ( event )
 		if event .phase == "release" then 

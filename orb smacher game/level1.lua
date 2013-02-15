@@ -103,7 +103,7 @@ end
 			audio.play(winSound)
 			timer.cancel(gameTmr)
 			winLose("win")
-			storyboard.showOverlay("nextlevel", {effect= "flipFadeOutIn", isModal = true })
+			storyboard.showOverlay("nextlevel", {effect= "fromBottom", time= 1000, easing = "inOutExpo", isModal = true })
 			audio.stop()
 			--youWon()
 		end

@@ -16,9 +16,8 @@ local centerX = display.contentWidth/2
 local centerY = display.contentHeight/2
 
 local function tapBtn()
-	local tmr = timer.performWithDelay(1000, tapBtn, 1)
-	storyboard.goToScene(Level2)
-	storyboard.hideOverlay("fromTop")
+	storyboard.gotoScene("Level2", {effect="slideRight"})
+	storyboard.hideOverlay("fromTop", {time = 2000})
 end
 
 -- Called when the scene's view does not exist:
@@ -46,11 +45,11 @@ function scene:createScene(event)
 		label = "Next",
 		size = 16,
 		font = "Verdana",
-		onRelease = tapBtn,
+		onEvent = tapBtn,
 	}
 	group:insert(nextLevelBtn)
-	nextLevelBtn.x = centerX + 50
-	nextLevelBtn.y = 350
+	nextLevelBtn.x = display.screenOriginX + 220
+	nextLevelBtn.y = display.screenOriginY + 350
 
 	local retryLevelBtn = widget.newButton{
 		x = x,
@@ -63,8 +62,8 @@ function scene:createScene(event)
 		--onRelease = tapBtn,
 	}
 	group:insert(retryLevelBtn)
-	retryLevelBtn.x = centerX - 50
-	retryLevelBtn.y = 350
+	retryLevelBtn.x = display.screenOriginX + 100
+	retryLevelBtn.y = display.screenOriginY + 350
 end
 
 -- Called immediately after scene has moved onscreen

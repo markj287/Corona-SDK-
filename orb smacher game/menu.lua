@@ -52,7 +52,7 @@ function scene:enterScene(event)
 	-- Play button function
 	local function hitPlayButton (event)
 		if event .phase == "release" then 
-			storyboard.gotoScene("level1", "slideLeft")
+			storyboard.gotoScene("level1", { effect="slideLeft", time=700})
 		end
 		print("play button has been hit")
 	end
