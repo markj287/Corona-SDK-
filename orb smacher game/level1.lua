@@ -33,7 +33,7 @@ end
 	o = 0
 	timeRemain = 20 -- Time remain for this level
 	timeUp = false 
-	totalOrbs = 30 -- Total orbs for this level 
+	totalOrbs = 1 -- Total orbs for this level 
 	ready = false 
 
 	-- Game images 
@@ -103,6 +103,7 @@ end
 			audio.play(winSound)
 			timer.cancel(gameTmr)
 			winLose("win")
+			storyboard.showOverlay("nextlevel", {effect= "flipFadeOutIn", isModal = true })
 			audio.stop()
 			--youWon()
 		end
