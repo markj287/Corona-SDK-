@@ -13,7 +13,7 @@ local storyboard = require ( "storyboard" )
 -- load first screen
 storyboard.gotoScene( "menu" )
 
-
+local myVar = 10
 
 
 

@@ -13,6 +13,23 @@ local widget = require "widget"
 display.setStatusBar(display.HiddenStatusBar)
 
 -- Local forward references should go here -
+local background = display.newImageRect("images/background4.png", 640, 1200)
+
+-- Play button function
+local function hitPlayButton (event)
+	if event .phase == "release" then 
+		storyboard.gotoScene("level1", { effect="slideLeft", time=700})
+	end
+	print("play button has been hit")
+end
+
+-- Sound files
+local soundtrack = audio.loadStream( "audio/soundtrack.mp3" )
+local popSound = audio.loadSound( "audio/orb-smach.wav" )
+local winSound = audio.loadSound( "audio/winSound.wav" )
+local loseSound = audio.loadSound( "audio/loseSound.wav" )
+
+
 
 -- Called when the scene's view does not exist:
 function scene:createScene(event)
@@ -20,42 +37,6 @@ function scene:createScene(event)
 
 	-- CREATE display objects and add the to 'group' here
 	-- Example use-case: Restore 'group' from previously saved state
-end
-
--- Called immediately after scene has moved onscreen
-function scene:enterScene(event)
-	local group = self.view
-	
-	-- INSERT code here(e.g. start timers, load audio, start listeners, etc.)
-
-	local audioIsPlaying = true 
-
-	-- Audio Channels 
-	audio.reserveChannels( 2 ) -- reserve 2 different chanels 
-	soundChanMusic = 1
-	soundChanSFX = 2 
-
-	-- Sound files
-	local soundtrack = audio.loadStream( "audio/soundtrack.mp3" )
-	local popSound = audio.loadSound( "audio/orb-smach.wav" )
-	local winSound = audio.loadSound( "audio/winSound.wav" )
-	local loseSound = audio.loadSound( "audio/loseSound.wav" )
-
-	local allSFX = { popSound, winSound, loseSound } -- Table with all sound affects 
-
-	-- Play music 
-	--audio.play(soundtrack)
-
-	local background = display.newImageRect("images/background4.png", 640, 1200)
-	group:insert(background)
-
-	-- Play button function
-	local function hitPlayButton (event)
-		if event .phase == "release" then 
-			storyboard.gotoScene("level1", { effect="slideLeft", time=700})
-		end
-		print("play button has been hit")
-	end
 
 	-- Play button GUI
 	local playBtn = widget.newButton{
@@ -75,6 +56,33 @@ function scene:enterScene(event)
 	group:insert(playBtn)
 	playBtn.x = display.contentWidth/2
 	playBtn.y = display.contentHeight/2
+end
+
+-- Called immediately after scene has moved onscreen
+function scene:enterScene(event)
+	local group = self.view
+	
+	-- INSERT code here(e.g. start timers, load audio, start listeners, etc.)
+
+	local audioIsPlaying = true 
+
+	-- Audio Channels 
+	audio.reserveChannels( 2 ) -- reserve 2 different chanels 
+	soundChanMusic = 1
+	soundChanSFX = 2 
+
+	
+
+	local allSFX = { popSound, winSound, loseSound } -- Table with all sound affects 
+
+	-- Play music 
+	--audio.play(soundtrack)
+
+	
+
+	
+
+	
   
   	-- Options button function
   	local function hitOptionsButton (event)
