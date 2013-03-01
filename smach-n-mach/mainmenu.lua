@@ -19,9 +19,8 @@ local levelText
 
 -- Level functions
 local function hitPlayButton(event)
-	if event.phase == "began" then
-		storyboard.gotoScene("level1", slideLeft, 1000, "easing= inOutExpo")
-		return true 
+	if event.phase == "release" then
+		storyboard.gotoScene("level1", slideDown, 5000)
 	end
 end
 
@@ -45,15 +44,15 @@ function scene:createScene(event)
 	 	id = "001_id",
 	 	default = "images/play-btn.png",
 	 	over = "images/play-btn.png",
-	 	width = 200,
-	 	height = 100,
+	 	width = 128,
+	 	height = 128,
 	 	onEvent = hitPlayButton
 	}
 	mainMenuGroup:insert(playBtn)
 	playBtn.x = centerX
 	playBtn.y = centerY
 
-	settingsBtn = display.newImageRect("images/settings-btn.png", 48, 48)
+	settingsBtn = display.newImageRect("images/settings-btn.png", 64, 64)
 	mainMenuGroup:insert(settingsBtn)
 	settingsBtn.x = 40 --display.contentWidth - 280
 	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10
