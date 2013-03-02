@@ -17,6 +17,10 @@ local playBtn
 local settingsBtn 
 local levelText
 
+-- Game constants
+local centerX = display.contentWidth * .5 
+local centerY = display.contentHeight * .5
+
 -- Level functions
 local function hitPlayButton(event)
 	if event.phase == "release" then
@@ -24,23 +28,20 @@ local function hitPlayButton(event)
 	end
 end
 
+-- Title screen options table
 local titleScreenOpts = {
-	time=400,
-	x= centerX,
-	y= centerY,
-	transition= easing.inOutQuad,
-	onComplete = titleAppear
+		delay = 1000,
+		time= 800,
+		x= centerX,
+		y= centerY - 210,
+		transition= easing.inOutExpo
 }
 
+-- Make title screen appear	
 local function titleAppear()
 	transition.to(gameTitle, titleScreenOpts)
 end
 
-
-
--- Game constants
-local centerX = display.contentWidth * .5 
-local centerY = display.contentHeight * .5
 
 -- This will be called when the scene view does not exist 
 function scene:createScene(event)
@@ -54,10 +55,11 @@ function scene:createScene(event)
 	gameTitle = display.newImageRect("game-title.png", 310, 100)
 	mainMenuGroup:insert(gameTitle)
 	gameTitle.x = centerX 
-	gameTitle.y = centerY - 340
+	gameTitle.y = centerY + 340
+		
+	-- Calls title screen function
+	titleAppear()
 	
-	
-
 	playBtn = widget.newButton {
 	 	id = "001_id",
 	 	default = "play-btn.png",
@@ -75,7 +77,7 @@ function scene:createScene(event)
 	settingsBtn.x = 40 --display.contentWidth - 280
 	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10
 	
-	timer.performWithDelay(1500, titleAppear)
+	--timer.performWithDelay(1500, titleAppear)
 
 end
 
@@ -89,7 +91,6 @@ end
 -- Called when scene is about to move offscreen
 function scene:exitScene(event)
 	
-	titleAppear()
 
 end
 

@@ -16,6 +16,11 @@ local gameTitle
 local playBtn 
 local backBtn 
 local levelText
+local pauseBtn
+
+-- Game constants
+local centerX = display.contentWidth * .5 
+local centerY = display.contentHeight * .5
 
 -- Level functions
 local function hitBackButton(event)
@@ -24,9 +29,11 @@ local function hitBackButton(event)
 	end
 end
 
--- Game constants
-local centerX = display.contentWidth * .5 
-local centerY = display.contentHeight * .5
+local function hitPauseButton(event)
+	if event.phase == "release" then
+		storyboard.gotoScene("mainmenu", "fade", 300)
+	end
+end
 
 -- This will be called when the scene view does not exist 
 function scene:createScene(event)
@@ -44,16 +51,29 @@ function scene:createScene(event)
 	levelGroup:insert(levelText)
 
 	backBtn = widget.newButton {
-	 	id = "001_id",
-	 	default = "back-btn.png",
-	 	over = "back-btn.png",
-	 	width = 48,
-	 	height = 48,
-	 	onEvent = hitBackButton
+		id = "001_id",
+		default = "back-btn.png",
+		over = "back-btn.png",
+		width = 48,
+		height = 48,
+		onEvent = hitBackButton
 	}
 	levelGroup:insert(backBtn)
-	backBtn.x = centerX
-	backBtn.y = centerY
+	backBtn.x = display.screenOriginX + 35
+	backBtn.y = display.screenOriginY + 35
+	
+	pauseBtn = widget.newButton {
+	 	id = "001_id",
+	 	default = "pause-btn.png",
+	 	over = "pause-btn.png",
+	 	width = 48,
+	 	height = 48,
+	 	onEvent = hitPauseButton
+	}
+	--pauseBtn:setReferencePoint(bottomRightReferencePoint)
+	levelGroup:insert(pauseBtn)
+	pauseBtn.x = display.viewableContentWidth - 35
+	pauseBtn.y = display.viewableContentHeight * .5
 
 end
 
