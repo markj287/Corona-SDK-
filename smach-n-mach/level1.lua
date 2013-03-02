@@ -20,7 +20,7 @@ local levelText
 -- Level functions
 local function hitBackButton(event)
 	if event.phase == "release" then
-		storyboard.gotoScene("mainmenu", "slideLeft")
+		storyboard.gotoScene("mainmenu", "fade", 300)
 	end
 end
 
@@ -45,8 +45,8 @@ function scene:createScene(event)
 
 	backBtn = widget.newButton {
 	 	id = "001_id",
-	 	default = "images/back-btn.png",
-	 	over = "images/back-btn.png",
+	 	default = "back-btn.png",
+	 	over = "back-btn.png",
 	 	width = 48,
 	 	height = 48,
 	 	onEvent = hitBackButton

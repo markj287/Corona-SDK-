@@ -20,9 +20,23 @@ local levelText
 -- Level functions
 local function hitPlayButton(event)
 	if event.phase == "release" then
-		storyboard.gotoScene("level1", slideDown, 5000)
+		storyboard.gotoScene("level1", "fade", 300)
 	end
 end
+
+local titleScreenOpts = {
+	time=400,
+	x= centerX,
+	y= centerY,
+	transition= easing.inOutQuad,
+	onComplete = titleAppear
+}
+
+local function titleAppear()
+	transition.to(gameTitle, titleScreenOpts)
+end
+
+
 
 -- Game constants
 local centerX = display.contentWidth * .5 
@@ -32,18 +46,22 @@ local centerY = display.contentHeight * .5
 function scene:createScene(event)
 	local mainMenuGroup = self.view
 
-	background = display.newImageRect("images/bg.png", 720, 1280)
+	background = display.newImageRect("bg.png", 720, 1280)
 	mainMenuGroup:insert(background)
+	background.x = centerX
+	background.y = centerY
 
-	gameTitle = display.newImageRect("images/game-title.png", 310, 100)
+	gameTitle = display.newImageRect("game-title.png", 310, 100)
 	mainMenuGroup:insert(gameTitle)
 	gameTitle.x = centerX 
-	gameTitle.y = centerY - 190
+	gameTitle.y = centerY - 340
+	
+	
 
 	playBtn = widget.newButton {
 	 	id = "001_id",
-	 	default = "images/play-btn.png",
-	 	over = "images/play-btn.png",
+	 	default = "play-btn.png",
+	 	over = "play-btn.png",
 	 	width = 128,
 	 	height = 128,
 	 	onEvent = hitPlayButton
@@ -52,10 +70,12 @@ function scene:createScene(event)
 	playBtn.x = centerX
 	playBtn.y = centerY
 
-	settingsBtn = display.newImageRect("images/settings-btn.png", 64, 64)
+	settingsBtn = display.newImageRect("settings-btn.png", 64, 64)
 	mainMenuGroup:insert(settingsBtn)
 	settingsBtn.x = 40 --display.contentWidth - 280
 	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10
+	
+	timer.performWithDelay(1500, titleAppear)
 
 end
 
@@ -69,7 +89,7 @@ end
 -- Called when scene is about to move offscreen
 function scene:exitScene(event)
 	
-
+	titleAppear()
 
 end
 
