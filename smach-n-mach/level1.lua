@@ -18,11 +18,11 @@ local backBtn
 local levelText
 local pauseBtn
 
--- Game constants
+---------- Game constants ----------
 local centerX = display.contentWidth * .5 
 local centerY = display.contentHeight * .5
 
--- Level functions
+---------- Level functions ----------
 local function hitBackButton(event)
 	if event.phase == "release" then
 		storyboard.gotoScene("mainmenu", "fade", 300)
@@ -35,7 +35,7 @@ local function hitPauseButton(event)
 	end
 end
 
--- This will be called when the scene view does not exist 
+---------- This will be called when the scene view does not exist ----------
 function scene:createScene(event)
 	local levelGroup = self.view
 	
@@ -80,28 +80,28 @@ function scene:createScene(event)
 	
 end
 
--- Called when after scene has moved onscreen
+---------- Called when after scene has moved onscreen ----------
 function scene:enterScene(event)
 	-- Removes previous scene
 	storyboard.purgeScene("mainmenu")
 	
 end
 
--- Called when scene is about to move offscreen
+---------- Called when scene is about to move offscreen ----------
 function scene:exitScene(event)
 	
 	
 
 end
 
--- Called prior to the removal of scene's "view" (display group)
+---------- Called prior to the removal of scene's "view" (display group) ----------
 function scene:destroyScene(event)
 	
 
 end
 
 
--- END OF YOUR IMPLEMENTATION
+---------- END OF YOUR IMPLEMENTATION ----------
 
 -- "createScene" event is dispatched if scene's view does not exist
 scene:addEventListener( "createScene", scene )

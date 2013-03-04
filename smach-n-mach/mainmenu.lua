@@ -17,11 +17,11 @@ local playBtn
 local settingsBtn 
 local levelText
 
--- Game constants
+---------- Game constants ----------
 local centerX = display.contentWidth * .5 
 local centerY = display.contentHeight * .5
 
--- Level functions
+---------- Level functions ----------
 local function hitPlayButton(event)
 	if event.phase == "release" then
 		storyboard.gotoScene("level1", "fade", 300)
@@ -43,7 +43,7 @@ local function titleAppear()
 end
 
 
--- This will be called when the scene view does not exist 
+---------- This will be called when the scene view does not exist ----------
 function scene:createScene(event)
 	local mainMenuGroup = self.view
 
@@ -81,20 +81,20 @@ function scene:createScene(event)
 
 end
 
--- Called when after scene has moved onscreen
+---------- Called when after scene has moved onscreen ----------
 function scene:enterScene(event)
 	-- Remove previous scene
 	
 	
 end
 
--- Called when scene is about to move offscreen
+---------- Called when scene is about to move offscreen ----------
 function scene:exitScene(event)
 	
 
 end
 
--- Called prior to the removal of scene's "view" (display group)
+---------- Called prior to the removal of scene's "view" (display group) ----------
 function scene:destroyScene(event)
 	
 
