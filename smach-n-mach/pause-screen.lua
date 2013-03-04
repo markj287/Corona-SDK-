@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------
 --
 -- Mark Johnson
@@ -9,6 +8,13 @@
 local widget = require "widget"
 local storyboard = require "storyboard"
 local scene = storyboard.newScene()
+
+-- Next button on win/pause screen
+local function hitNextBtn(event)
+	if event.phase == "release" then
+		storyboard.gotoScene("level2", "fade", 300)
+	end
+end
 
 
 -- Called when scene view does not exist 
@@ -24,6 +30,17 @@ function scene:createScene(event)
 	pauseText.x = display.contentWidth * .5
 	pauseText.y = display.contentHeight * .5
 	group:insert(pauseText)
+
+	local nextBtn = widget.newButton{
+		id = "001_id",
+		label = "next",
+		width = 48,
+		height = 48,
+		onRelease = hitNextBtn
+	}
+	nextBtn.x = display.contentWidth * .5 + 20
+	nextBtn.y = display.contentHeight * .5 + 20
+	group:insert(nextBtn)
 
 end
 
