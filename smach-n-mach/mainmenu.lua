@@ -47,7 +47,7 @@ end
 function scene:createScene(event)
 	local mainMenuGroup = self.view
 
-	background = display.newImageRect("bg.png", 720, 1280)
+	background = display.newImageRect("iphonebg.png", 320, 480)
 	mainMenuGroup:insert(background)
 	background.x = centerX
 	background.y = centerY
@@ -56,7 +56,7 @@ function scene:createScene(event)
 	mainMenuGroup:insert(gameTitle)
 	gameTitle.x = centerX 
 	gameTitle.y = centerY + 340
-		
+	
 	-- Calls title screen function
 	titleAppear()
 	
@@ -64,28 +64,28 @@ function scene:createScene(event)
 	 	id = "001_id",
 	 	default = "play-btn.png",
 	 	over = "play-btn.png",
-	 	width = 128,
-	 	height = 128,
+	 	width = 100,
+	 	height = 100,
 	 	onEvent = hitPlayButton
 	}
 	mainMenuGroup:insert(playBtn)
 	playBtn.x = centerX
-	playBtn.y = centerY
+	playBtn.y = centerY + 340
+	
+	transition.to(playBtn, {time=1000, x= centerX, y= centerY, transition= easing.inOutExpo})
 
-	settingsBtn = display.newImageRect("settings-btn.png", 64, 64)
+	settingsBtn = display.newImageRect("settings-btn.png", 48, 48)
 	mainMenuGroup:insert(settingsBtn)
 	settingsBtn.x = 40 --display.contentWidth - 280
 	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10
-	
-	--timer.performWithDelay(1500, titleAppear)
 
 end
 
 -- Called when after scene has moved onscreen
 function scene:enterScene(event)
+	-- Remove previous scene
 	
-
-
+	
 end
 
 -- Called when scene is about to move offscreen

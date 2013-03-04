@@ -9,7 +9,6 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 local storyboard = require "storyboard"
-local widget = require "widget"
 
 -- load main menu 
 storyboard.gotoScene("mainmenu")

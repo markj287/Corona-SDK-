@@ -38,9 +38,12 @@ end
 -- This will be called when the scene view does not exist 
 function scene:createScene(event)
 	local levelGroup = self.view
-
-	--background = display.newImageRect("images/bg.png", 720, 1280)
-	--levelGroup:insert(background)
+	
+	-- insert background image
+	background = display.newImageRect("bg-new.png", 320, 480)
+	background.x = centerX
+	background.y = centerY
+	levelGroup:insert(background)
 
 	-- Test text to make sure am on the right level
 	levelText = display.newText("level 1", 0, 0, native.systemFontBold, 24)
@@ -74,27 +77,26 @@ function scene:createScene(event)
 	levelGroup:insert(pauseBtn)
 	pauseBtn.x = display.viewableContentWidth - 35
 	pauseBtn.y = display.viewableContentHeight * .5
-
+	
 end
 
 -- Called when after scene has moved onscreen
 function scene:enterScene(event)
+	-- Removes previous scene
+	storyboard.purgeScene("mainmenu")
 	
-
-
 end
 
 -- Called when scene is about to move offscreen
 function scene:exitScene(event)
 	
-
+	
 
 end
 
 -- Called prior to the removal of scene's "view" (display group)
 function scene:destroyScene(event)
 	
-
 
 end
 
