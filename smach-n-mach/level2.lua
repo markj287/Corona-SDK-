@@ -58,7 +58,7 @@ function scene:createScene(event)
 	--pauseBtn:setReferencePoint(bottomRightReferencePoint)
 	group:insert(pauseBtn)
 	pauseBtn.x = display.viewableContentWidth - 35
-	pauseBtn.y = display.viewableContentHeight * .5
+	pauseBtn.y = display.viewableContentHeight * .06
 
 end
 

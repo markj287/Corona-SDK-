@@ -16,6 +16,12 @@ local function hitNextBtn(event)
 	end
 end
 
+local function hitUnpauseBtn(event)
+	if event.phase == "release" then
+		storyboard.hideOverlay()
+	end
+end
+
 
 -- Called when scene view does not exist 
 function scene:createScene(event)
@@ -27,20 +33,31 @@ function scene:createScene(event)
 	group:insert(bg)
 
 	local pauseText = display.newText("Pause", 0,0, native.systemFont, 48)
-	pauseText.x = display.contentWidth * .5
-	pauseText.y = display.contentHeight * .5
+	pauseText.x = display.contentWidth * .5 
+	pauseText.y = display.contentHeight * .5 - 30
 	group:insert(pauseText)
 
 	local nextBtn = widget.newButton{
 		id = "001_id",
 		label = "next",
-		width = 48,
-		height = 48,
+		width = 44,
+		height = 44,
 		onRelease = hitNextBtn
 	}
-	nextBtn.x = display.contentWidth * .5 + 20
-	nextBtn.y = display.contentHeight * .5 + 20
+	nextBtn.x = display.contentWidth * .5 + 70
+	nextBtn.y = display.contentHeight * .5 + 30
 	group:insert(nextBtn)
+
+	local unPauseBtn = widget.newButton{
+		id = "001_id",
+		label = "back",
+		width = 44,
+		height = 44,
+		onRelease = hitUnpauseBtn
+	}
+	unPauseBtn.x = display.contentWidth * .5 - 70
+	unPauseBtn.y = display.contentHeight * .5 + 30
+	group:insert(unPauseBtn)
 
 end
 
