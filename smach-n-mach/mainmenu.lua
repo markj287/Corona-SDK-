@@ -30,11 +30,11 @@ end
 
 -- Title screen options table
 local titleScreenOpts = {
-		delay = 1000,
-		time= 800,
-		x= centerX,
-		y= centerY - 210,
-		transition= easing.inOutExpo
+	delay = 1000,
+	time= 800,
+	x= centerX,
+	y= centerY - 210,
+	transition= easing.inOutExpo
 }
 
 -- Make title screen appear	
