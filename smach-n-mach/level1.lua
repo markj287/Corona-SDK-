@@ -31,7 +31,7 @@ end
 
 local function hitPauseButton(event)
 	if event.phase == "release" then
-		storyboard.gotoScene("mainmenu", "fade", 300)
+		storyboard.showOverlay("pause-screen", {"fade", 300, isModal = true} )
 	end
 end
 
