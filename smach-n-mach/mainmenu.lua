@@ -47,7 +47,7 @@ end
 function scene:createScene(event)
 	local mainMenuGroup = self.view
 
-	background = display.newImageRect("iphonebg.png", 320, 480)
+	background = display.newImageRect("iphonebg.png", 320, 570)
 	mainMenuGroup:insert(background)
 	background.x = centerX
 	background.y = centerY

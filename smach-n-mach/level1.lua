@@ -29,6 +29,7 @@ local function hitBackButton(event)
 	end
 end
 
+-- pause screen function
 local function hitPauseButton(event)
 	if event.phase == "release" then
 		storyboard.showOverlay("pause-screen", {"fade", 300, isModal = true} )
@@ -40,7 +41,7 @@ function scene:createScene(event)
 	local levelGroup = self.view
 	
 	-- insert background image
-	background = display.newImageRect("bg-new.png", 320, 480)
+	background = display.newImageRect("iphonebg.png", 320, 570)
 	background.x = centerX
 	background.y = centerY
 	levelGroup:insert(background)
@@ -76,7 +77,7 @@ function scene:createScene(event)
 	--pauseBtn:setReferencePoint(bottomRightReferencePoint)
 	levelGroup:insert(pauseBtn)
 	pauseBtn.x = display.viewableContentWidth - 35
-	pauseBtn.y = display.viewableContentHeight * .5
+	pauseBtn.y = display.viewableContentHeight * .06
 	
 end
 

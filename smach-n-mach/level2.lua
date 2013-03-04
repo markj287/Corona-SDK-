@@ -34,7 +34,7 @@ function scene:createScene(event)
 	local group = self.view
 
 	-- insert background image
-	background = display.newImageRect("bg-new.png", 320, 480)
+	background = display.newImageRect("iphonebg.png", 320, 570)
 	background.x = centerX
 	background.y = centerY
 	group:insert(background)
