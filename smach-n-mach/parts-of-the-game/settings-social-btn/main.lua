@@ -1,37 +1,43 @@
 --------------------------------------------
 -- Settings and social icons button effects
 --------------------------------------------
-display.setStausBar(display.HiddenStatusBar)
+display.setStatusBar(display.HiddenStatusBar)
 local widget = require "widget"
 
 local centerX = display.contentWidth * .5
 local centerY = display.contentHeight * .5 
+local button
+local newButton
 
-local function optsAppear(event)
-	if event.phase == "release" then 
-		transition.to(musicBtn, {time = 400} )
-	end
+local function buttonTrans()
+	transition.to(newButton, { time = 400, x = centerX, y = centerY - 70})
 end
 
-local musicBtn = widget.newButton {
-	id = 001,
-	label = "music",
-	width = 44,
-	height = 44
-}
-musicBtn.x = centerX
-musicBtn.y = centerY
+local function buttonTransBack()
+	transition.to(newButton, { time = 400, x = centerX, y = centerY})
+end
 
-local settingBtn = widget.newButton {
-	id = 001,
-	default = "settings-btn.png",
-	over = "settings-btn.png",
-	width = 44,
-	height = 44,
-	onRelease = optsAppear
+newButton = widget.newButton {
+	label = "new Button",
+	width = 100,
+	height = 52,
 }
-settingBtn.x = centerX 
-settingBtn.y = centerY - 40
+newButton.x = centerX
+newButton.y = centerY
+
+button = widget.newButton {
+	label = "play",
+	width = 100,
+	height = 52,
+	onRelease = buttonTrans,
+	--onEvent = buttonTransBack
+}
+button.x = centerX
+button.y = centerY
+
+
+
+
 
 
 
