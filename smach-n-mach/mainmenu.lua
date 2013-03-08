@@ -25,6 +25,7 @@ soundChanMusic = 1
 local soundPop = audio.loadSound("audio/loudPopSfx.mp3")
 local soundMusic = audio.loadStream("audio/SneakySnitchST.mp3")
 
+
 ---------- Game constants ----------
 local centerX = display.contentWidth * .5 
 local centerY = display.contentHeight * .5
@@ -36,15 +37,31 @@ local function hitPlayButton(event)
 	end
 end
 
-local function playSfx (event)
-	if isMscOn then
-		audio.play(soundMusic)
+local function hitOptionsButton(event)
+	if event.phase == "release" then
+		storyboard.gotoScene("options", "fade", 300)
 	end
 end
 
-local function playAudio()
-	playSfx()
-end
+--- Music Sections ---
+	local function playSfx (event)
+		if isMscOn then
+			audio.play(soundMusic)
+		end
+	end
+
+	local function playAudio()
+		playSfx()
+	end
+
+	local function stopAudio()
+		audio.stop()
+		audio.rewind(soundMusic)
+	end
+
+	local function playPopSound()
+		audio.play(soundPop)
+	end
 
 -- Title screen options table
 local titleScreenOpts = {
@@ -75,8 +92,11 @@ function scene:createScene(event)
 	gameTitle.x = centerX 
 	gameTitle.y = centerY + 340
 	
-	-- Calls title screen function
+	-- Calls game functions
 	titleAppear()
+	playAudio()
+	--stopAudio()
+	--playPopSound()
 	
 	playBtn = widget.newButton {
 	 	id = "001_id",
@@ -92,10 +112,17 @@ function scene:createScene(event)
 	
 	transition.to(playBtn, {time=1000, x= centerX, y= centerY, transition= easing.inOutExpo})
 
-	settingsBtn = display.newImageRect("images/settings-btn.png", 48, 48)
+	settingsBtn = widget.newButton {
+	 	id = "001_id",
+	 	default = "images/settings-btn.png",
+	 	over = "images/settings-btn.png",
+	 	width = 48,
+	 	height = 48,
+	 	onEvent = hitOptionsButton
+	}
 	mainMenuGroup:insert(settingsBtn)
-	settingsBtn.x = 40 --display.contentWidth - 280
-	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10
+	settingsBtn.x = 40
+	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10	
 
 end
 
