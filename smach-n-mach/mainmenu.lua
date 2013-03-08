@@ -16,6 +16,14 @@ local gameTitle
 local playBtn 
 local settingsBtn 
 local levelText
+local isMscOn = true 
+local isSfxOn
+audio.reserveChannels(1) -- reserves two audio channels 
+
+soundChanMusic = 1
+
+local soundPop = audio.loadSound("audio/loudPopSfx.mp3")
+local soundMusic = audio.loadStream("audio/SneakySnitchST.mp3")
 
 ---------- Game constants ----------
 local centerX = display.contentWidth * .5 
@@ -26,6 +34,16 @@ local function hitPlayButton(event)
 	if event.phase == "release" then
 		storyboard.gotoScene("level1", "fade", 300)
 	end
+end
+
+local function playSfx (event)
+	if isMscOn then
+		audio.play(soundMusic)
+	end
+end
+
+local function playAudio()
+	playSfx()
 end
 
 -- Title screen options table
@@ -47,12 +65,12 @@ end
 function scene:createScene(event)
 	local mainMenuGroup = self.view
 
-	background = display.newImageRect("iphonebg.png", 320, 570)
+	background = display.newImageRect("images/iphonebg.png", 320, 570)
 	mainMenuGroup:insert(background)
 	background.x = centerX
 	background.y = centerY
 
-	gameTitle = display.newImageRect("game-title.png", 310, 100)
+	gameTitle = display.newImageRect("images/game-title.png", 310, 100)
 	mainMenuGroup:insert(gameTitle)
 	gameTitle.x = centerX 
 	gameTitle.y = centerY + 340
@@ -62,8 +80,8 @@ function scene:createScene(event)
 	
 	playBtn = widget.newButton {
 	 	id = "001_id",
-	 	default = "play-btn.png",
-	 	over = "play-btn.png",
+	 	default = "images/play-btn.png",
+	 	over = "images/play-btn.png",
 	 	width = 100,
 	 	height = 100,
 	 	onEvent = hitPlayButton
@@ -74,7 +92,7 @@ function scene:createScene(event)
 	
 	transition.to(playBtn, {time=1000, x= centerX, y= centerY, transition= easing.inOutExpo})
 
-	settingsBtn = display.newImageRect("settings-btn.png", 48, 48)
+	settingsBtn = display.newImageRect("images/settings-btn.png", 48, 48)
 	mainMenuGroup:insert(settingsBtn)
 	settingsBtn.x = 40 --display.contentWidth - 280
 	settingsBtn.y = display.contentHeight - settingsBtn.contentHeight + 10

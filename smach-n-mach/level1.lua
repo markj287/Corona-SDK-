@@ -41,7 +41,7 @@ function scene:createScene(event)
 	local levelGroup = self.view
 	
 	-- insert background image
-	background = display.newImageRect("iphonebg.png", 320, 570)
+	background = display.newImageRect("images/iphonebg.png", 320, 570)
 	background.x = centerX
 	background.y = centerY
 	levelGroup:insert(background)
@@ -56,8 +56,8 @@ function scene:createScene(event)
 
 	backBtn = widget.newButton {
 		id = "001_id",
-		default = "back-btn.png",
-		over = "back-btn.png",
+		default = "images/back-btn.png",
+		over = "images/back-btn.png",
 		width = 48,
 		height = 48,
 		onEvent = hitBackButton
@@ -68,8 +68,8 @@ function scene:createScene(event)
 	
 	pauseBtn = widget.newButton {
 	 	id = "001_id",
-	 	default = "pause-btn.png",
-	 	over = "pause-btn.png",
+	 	default = "images/pause-btn.png",
+	 	over = "images/pause-btn.png",
 	 	width = 48,
 	 	height = 48,
 	 	onEvent = hitPauseButton

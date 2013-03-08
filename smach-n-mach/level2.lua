@@ -34,7 +34,7 @@ function scene:createScene(event)
 	local group = self.view
 
 	-- insert background image
-	background = display.newImageRect("iphonebg.png", 320, 570)
+	background = display.newImageRect("images/iphonebg.png", 320, 570)
 	background.x = centerX
 	background.y = centerY
 	group:insert(background)
@@ -49,8 +49,8 @@ function scene:createScene(event)
 
 	pauseBtn = widget.newButton {
 	 	id = "001_id",
-	 	default = "pause-btn.png",
-	 	over = "pause-btn.png",
+	 	default = "images/pause-btn.png",
+	 	over = "images/pause-btn.png",
 	 	width = 48,
 	 	height = 48,
 	 	onEvent = hitPauseButton

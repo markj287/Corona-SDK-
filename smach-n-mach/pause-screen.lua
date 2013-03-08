@@ -27,7 +27,7 @@ end
 function scene:createScene(event)
 	local group = self.view
 
-	local bg = display.newImage("pause-menu.png")
+	local bg = display.newImage("images/pause-menu.png")
 	bg.x = display.contentWidth * .5
 	bg.y = display.contentHeight * .5
 	group:insert(bg)
